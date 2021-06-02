@@ -16,3 +16,16 @@ def install(package):
 
 required = []
 failed = []
+# Try to open reqirements.txt file and read all required packages
+try:
+    file = open("requirements.txt", "r")
+    file_lines = file.readlines()
+    required = [line.strip().lower() for line in file_lines]
+    file.close()
+except FileNotFoundError:
+    print("[ERROR] No requiremnts.txt file found")
+
+
+if len(required) > 0:
+    print("[INPUT] You are about to install", len(required), "packages, would you like to proceed (y/n):", end=" ")
+    ans = input()
