@@ -159,3 +159,40 @@ while loop:
                 for i in range(cols):
     for j in range(row):
         grid[i][j].addNeighbors(grid)
+        def heurisitic(n, e):
+    d = math.sqrt((n.i - e.i)**2 + (n.j - e.j)**2)
+    #d = abs(n.i - e.i) + abs(n.j - e.j)
+    return d
+
+
+def main():
+    end.show((255, 8, 127), 0)
+    start.show((255, 8, 127), 0)
+    if len(openSet) > 0:
+        lowestIndex = 0
+        for i in range(len(openSet)):
+            if openSet[i].f < openSet[lowestIndex].f:
+                lowestIndex = i
+                 current = openSet[lowestIndex]
+        if current == end:
+            print('done', current.f)
+            start.show((255,8,127),0)
+            temp = current.f
+            for i in range(round(current.f)):
+                current.closed = False
+                current.show((0,0,255), 0)
+                current = current.previous
+            end.show((255, 8, 127), 0)
+            Tk().wm_withdraw()
+            result = messagebox.askokcancel('Program Finished', ('The program finished, the shortest distance \n to the path is ' + str(temp) + ' blocks away, \n would you like to re run the program?'))
+            if result == True:
+                os.execl(sys.executable,sys.executable, *sys.argv)
+            else:
+                ag = True
+                while ag:
+                    ev = pygame.event.get()
+                    for event in ev:
+                        if event.type == pygame.KEYDOWN:
+                            ag = False
+                            break
+                            pygame.quit()
