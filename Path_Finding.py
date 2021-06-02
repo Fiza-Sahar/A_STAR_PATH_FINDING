@@ -65,3 +65,21 @@ grey = (220, 220, 220)
 w = 800 / cols
 h = 800 / row
 cameFrom = []
+
+# create 2d array
+for i in range(cols):
+    grid[i] = [0 for i in range(row)]
+
+# Create Spots
+for i in range(cols):
+    for j in range(row):
+        grid[i][j] = spot(i, j)
+
+
+# Set start and end node
+start = grid[12][5]
+end = grid[3][6]
+# SHOW RECT
+for i in range(cols):
+    for j in range(row):
+        grid[i][j].show((255, 255, 255), 1)
