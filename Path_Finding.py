@@ -215,3 +215,20 @@ def main():
             neighbor.f = neighbor.g + neighbor.h
             if neighbor.previous == None:
                 neighbor.previous = current
+                 if var.get():
+        for i in range(len(openSet)):
+            openSet[i].show(green, 0)
+
+        for i in range(len(closedSet)):
+            if closedSet[i] != start:
+                closedSet[i].show(red, 0)
+    current.closed = True
+
+
+while True:
+    ev = pygame.event.poll()
+    if ev.type == pygame.QUIT:
+        pygame.quit()
+    pygame.display.update()
+    main()
+
