@@ -83,3 +83,22 @@ end = grid[3][6]
 for i in range(cols):
     for j in range(row):
         grid[i][j].show((255, 255, 255), 1)
+        for i in range(0,row):
+    grid[0][i].show(grey, 0)
+    grid[0][i].obs = True
+    grid[cols-1][i].obs = True
+    grid[cols-1][i].show(grey, 0)
+    grid[i][row-1].show(grey, 0)
+    grid[i][0].show(grey, 0)
+    grid[i][0].obs = True
+    grid[i][row-1].obs = True
+
+def onsubmit():
+    global start
+    global end
+    st = startBox.get().split(',')
+    ed = endBox.get().split(',')
+    start = grid[int(st[0])][int(st[1])]
+    end = grid[int(ed[0])][int(ed[1])]
+    window.quit()
+    window.destroy()
