@@ -29,3 +29,22 @@ except FileNotFoundError:
 if len(required) > 0:
     print("[INPUT] You are about to install", len(required), "packages, would you like to proceed (y/n):", end=" ")
     ans = input()
+    if ans.lower() == "y":
+        for package in required:
+            try:
+                print("[LOG] Looking for", package)
+                with contextlib.redirect_stdout(None):
+                    __import__(package)
+                print("[LOG]", package, "is already installed, skipping...")
+            except ImportError:
+                print("[LOG]", package, "not installed")
+
+                try:
+                    print("[LOG] Trying to install", package, "via pip")
+                    try:
+                        import pip
+                    except:
+                        print("[EXCEPTION] Pip is not installed")
+                        print("[LOG] Trying to install pip")
+                        get_pip.main()
+                        print("[LOG] Pip has been installed")
