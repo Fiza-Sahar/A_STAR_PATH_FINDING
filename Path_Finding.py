@@ -102,3 +102,60 @@ def onsubmit():
     end = grid[int(ed[0])][int(ed[1])]
     window.quit()
     window.destroy()
+    window = Tk()
+label = Label(window, text='Start(x,y): ')
+startBox = Entry(window)
+label1 = Label(window, text='End(x,y): ')
+endBox = Entry(window)
+var = IntVar()
+showPath = ttk.Checkbutton(window, text='Show Steps :', onvalue=1, offvalue=0, variable=var)
+
+submit = Button(window, text='Submit', command=onsubmit)
+
+showPath.grid(columnspan=2, row=2)
+submit.grid(columnspan=2, row=3)
+label1.grid(row=1, pady=3)
+endBox.grid(row=1, column=1, pady=3)
+startBox.grid(row=0, column=1, pady=3)
+label.grid(row=0, pady=3)
+
+window.update()
+mainloop()
+
+pygame.init()
+openSet.append(start)
+
+def mousePress(x):
+    t = x[0]
+    w = x[1]
+    g1 = t // (800 // cols)
+    g2 = w // (800 // row)
+    acess = grid[g1][g2]
+    if acess != start and acess != end:
+        if acess.obs == False:
+            acess.obs = True
+            acess.show((255, 255, 255), 0)
+
+end.show((255, 8, 127), 0)
+start.show((255, 8, 127), 0)
+
+loop = True
+while loop:
+    ev = pygame.event.get()
+
+    for event in ev:
+        if event.type == pygame.QUIT:
+            pygame.quit()
+        if pygame.mouse.get_pressed()[0]:
+            try:
+                pos = pygame.mouse.get_pos()
+                mousePress(pos)
+            except AttributeError:
+                pass
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                loop = False
+                break
+                for i in range(cols):
+    for j in range(row):
+        grid[i][j].addNeighbors(grid)
